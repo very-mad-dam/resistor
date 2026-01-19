@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>I suck at html dont roast me</title>
+    </head>
+    <body>
+        <h1>Resistence Calculator</h1>
+        <p>yes i hate design and tech too</p>
+
+        <label>resistence value: </label>
+        <input type="number" id="resistence">
+        <br><br>
+
+        <label>Tolerance:</label>
+        <select id="tolerance">
+            <option value="Gold">±5%</option>
+            <option value="Silver">±10%</option>
+            <option value="Brown">±1%</option>
+            <option value="Red">±2%</option>
+        </select>
+        <br><br>
+
+        <button onclick="calculate()">Calculate Resistance</button>
+        <p id="result"></p>
+
+        <script>
+            const digitColors = ["Black","Brown","Red","Orange","Yellow","Green","Blue","Violet","Grey","White"];
+
+            const multiplierColors = {
+                1: "Black",
+                10: "Brown",
+                100: "Red",
+                1000: "Orange",
+                10000: "Yellow",
+                100000: "Green",
+                1000000: "Blue",
+                10000000: "Violet"
+            };
+
+            function calculate() {
+                let value = document.getElementById("resistence").value;
+                const tolerance = document.getElementById("tolerance").value;
+
+                if (value.length < 2) {
+                    document.getElementById("result").innerText =
+                        "trolling isnt good";
+                    return;
+                }
+
+                let str = value.toString();
+
+                let firstTwo = parseInt(str.slice(0, 2));
+
+                if (str.length > 2 && str[2] !== "0") {
+                    firstTwo += 1;
+                }
+
+                if (firstTwo === 100) {
+                    firstTwo = 10;
+                    str = "10" + str.slice(2);
+                }
+
+                let band1 = digitColors[Math.floor(firstTwo / 10)];
+                let band2 = digitColors[firstTwo % 10];
+
+                let power = str.length - 2;
+                let multiplierValue = Math.pow(10, power);
+                let band3 = multiplierColors[multiplierValue];
+
+                document.getElementById("result").innerHTML = `
+                    <strong>Color Bands:</strong><br>
+                    ${band1} | ${band2} | ${band3} | ${tolerance}
+                `;
+            }
+        </script>
+    </body>
+</html>
