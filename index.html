@@ -48,10 +48,10 @@
                 }
 
                 let str = value.toString();
+                str = str.replace(/0+$/, "");
 
                 let firstTwo = parseInt(str.slice(0, 2));
-
-                if (str.length > 2 && str[2] !== "0") {
+                if (str.length > 2 && parseInt(str[2]) >= 1) {
                     firstTwo += 1;
                 }
                 
