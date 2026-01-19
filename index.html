@@ -54,10 +54,10 @@
                 if (str.length > 2 && str[2] !== "0") {
                     firstTwo += 1;
                 }
-
+                
                 if (firstTwo === 100) {
                     firstTwo = 10;
-                    str = "10" + str.slice(2);
+                    str = "10" + "0".repeat(str.length - 2);
                 }
 
                 let band1 = digitColors[Math.floor(firstTwo / 10)];
